@@ -20,5 +20,6 @@ srcs = [
 
 executable('mint', srcs,
   include_directories : include_directories('.'),
-  dependencies : [cairo_dep, minui_dep]
+  dependencies : [cairo_dep, minui_dep],
+  install : true
 )
