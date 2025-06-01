@@ -1,0 +1,23 @@
+project('mint', 'c',
+  version : '0.2',
+  default_options : [
+    'c_std=c11',
+    'optimization=3',
+    'strip=true',
+    'buildtype=release'
+  ]
+)
+
+cairo_dep = dependency('cairo', required : true)
+minui_dep = dependency('minui', required : true)
+
+srcs = [
+  'src/main.c',
+  'src/battery.c',
+  'src/splash.c',
+]
+
+executable('mint', srcs,
+  include_directories : include_directories('.'),
+  dependencies : [cairo_dep, minui_dep]
+)
