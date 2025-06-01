@@ -15,6 +15,7 @@ srcs = [
   'src/main.c',
   'src/battery.c',
   'src/splash.c',
+  'src/text.c',
 ]
 
 executable('mint', srcs,
