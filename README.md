@@ -13,6 +13,7 @@ Mint is a [minui](https://github.com/droidian/android-minui)-based splash and in
 
  - `minui` 
  - `cairo`
+ - `freetype2`
  - `meson`
 
 ## Build
