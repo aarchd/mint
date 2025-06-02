@@ -16,7 +16,7 @@ void draw_text_line(cairo_t *cr, int width, int height, const char *text, double
 
     cairo_save(cr);
 
-    cairo_select_font_face(cr, "Sans", CAIRO_FONT_SLANT_NORMAL, CAIRO_FONT_WEIGHT_NORMAL);
+    cairo_select_font_face(cr, "Poppins Light", CAIRO_FONT_SLANT_NORMAL, CAIRO_FONT_WEIGHT_NORMAL);
     double font_size = 12 * physical_scale;
     cairo_set_font_size(cr, font_size);
     cairo_set_source_rgb(cr, 1, 1, 1);
