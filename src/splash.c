@@ -1,3 +1,8 @@
+/* SPDX-License-Identifier: GPL-3.0-or-later
+ *
+ * Copyright (C) 2025 Deepak Meena <notwho53@gmail.com>
+ */
+
 #include <cairo.h>
 #include "common.h"
 
