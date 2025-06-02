@@ -5,9 +5,12 @@
 
 #define _POSIX_C_SOURCE 200809L
 #include <cairo.h>
+#include <cairo-ft.h>
 #include <string.h>
 #include <stdlib.h>
 #include <stdio.h>
+#include <freetype2/ft2build.h>
+#include FT_FREETYPE_H
 #include "common.h"
 
 void draw_text_line(cairo_t *cr, int width, int height, const char *text, double physical_scale) {
@@ -16,7 +19,13 @@ void draw_text_line(cairo_t *cr, int width, int height, const char *text, double
 
     cairo_save(cr);
 
-    cairo_select_font_face(cr, "Poppins Light", CAIRO_FONT_SLANT_NORMAL, CAIRO_FONT_WEIGHT_NORMAL);
+    FT_Library ft_library;
+    FT_Face ft_face;
+    FT_Init_FreeType(&ft_library);
+    FT_New_Memory_Face(ft_library, Poppins_Light_ttf, Poppins_Light_ttf_len, 0, &ft_face);
+
+    cairo_font_face_t *cairo_ft_face = cairo_ft_font_face_create_for_ft_face(ft_face, 0);
+    cairo_set_font_face(cr, cairo_ft_face);
     double font_size = 12 * physical_scale;
     cairo_set_font_size(cr, font_size);
     cairo_set_source_rgb(cr, 1, 1, 1);

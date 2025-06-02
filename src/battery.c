@@ -5,6 +5,8 @@
 
 #include <cairo.h>
 #include <cairo-ft.h>
+#include <freetype2/ft2build.h>
+#include FT_FREETYPE_H
 #include "common.h"
 
 static void cairo_rounded_rectangle(cairo_t *cr, double x, double y, double width, double height, double radius) {
@@ -84,7 +86,13 @@ void draw_bat(int width, int height, cairo_t *cr, char *batname, double physical
         cairo_set_source_rgb(cr, 0.2, 0.8, 0.2);
     }
 
-    cairo_select_font_face(cr, "Poppins Light", CAIRO_FONT_SLANT_NORMAL, CAIRO_FONT_WEIGHT_NORMAL);
+    FT_Library ft_library;
+    FT_Face ft_face;
+    FT_Init_FreeType(&ft_library);
+    FT_New_Memory_Face(ft_library, Poppins_Light_ttf, Poppins_Light_ttf_len, 0, &ft_face);
+
+    cairo_font_face_t *cairo_ft_face = cairo_ft_font_face_create_for_ft_face(ft_face, 0);
+    cairo_set_font_face(cr, cairo_ft_face);
     cairo_set_font_size(cr, 16);
 
     char percentage_text[10];
