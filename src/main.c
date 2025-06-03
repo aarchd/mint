@@ -106,7 +106,6 @@ int main(int argc, char *argv[]) {
     }
 
     gr_init(true);
-    gr_color(0, 0, 0, 255);
     gr_clear();
 
     minui.width = gr_fb_width();
