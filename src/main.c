@@ -1,6 +1,11 @@
 /* SPDX-License-Identifier: GPL-3.0-or-later
  *
  * Copyright (C) 2025 Deepak Meena <notwho53@gmail.com>
+ *
+ * minui rendering code is based on work by:
+ *   Eugenio Paolantonio (g7) <me@medesimo.eu>
+ *   https://github.com/g7/lv_drivers/blob/8cd6926996779d1c6a2b2e83405cf59809d8db02/display/minui.c
+ *
  */
 
 #include <cairo.h>
