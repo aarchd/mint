@@ -1,0 +1,12 @@
+[Unit]
+Description=Mint Splash
+After=local-fs.target
+Conflicts=android-service@hwcomposer.service
+Before=android-service@hwcomposer.service
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/mint --splash
+
+[Install]
+WantedBy=multi-user.target
