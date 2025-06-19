@@ -1,5 +1,5 @@
 project('mint', 'c',
-  version : '0.6',
+  version : '0.7',
   default_options : [
     'c_std=c11',
     'optimization=3',

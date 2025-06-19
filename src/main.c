@@ -82,8 +82,6 @@ static void render_to_screen(cairo_surface_t *surface) {
 
 int main(int argc, char *argv[]) {
     if (argc < 2 || (strcmp(argv[1], "--charging") == 0 && argc < 3)) {
-        // charging is broken wont know if charger has been unplugged and we need to shutdown
-        // splash however do what it says
         fprintf(stderr, "Usage: %s --charging BAT_NAME | --splash | --text \"string\"\n", argv[0]);
         return EXIT_FAILURE;
     }

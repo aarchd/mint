@@ -5,7 +5,6 @@ Mint is a [minui](https://github.com/droidian/android-minui)-based splash and in
 ## Features
 
  - Battery status graphic for offline charging
-(Currently broken: if the device isn't charging, it should exit — needs fixing)
  - Splash (aacrhd logo)
  - On-screen text graphics for displaying logs
 
