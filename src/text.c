@@ -1,6 +1,6 @@
 /* SPDX-License-Identifier: GPL-3.0-or-later
  *
- * Copyright (C) 2025 Deepak Meena <notwho53@gmail.com>
+ * Copyright (C) 2025 Deepak Meena <who53@disroot.org>
  */
 
 #define _POSIX_C_SOURCE 200809L
