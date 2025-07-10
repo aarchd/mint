@@ -179,5 +179,5 @@ cleanup:
     unlink(SOCK_PATH);
     gr_fb_blank(true);
     gr_exit();
-    return EXIT_SUCCESS;
+    return EXIT_FAILURE;
 }
