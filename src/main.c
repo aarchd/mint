@@ -155,7 +155,6 @@ int main(int argc, char *argv[]) {
             if (n > 0) {
                 double clear_height = 40 * physical_scale;
                 cairo_save(cr);
-                cairo_set_source_rgb(cr, 0, 0, 0);
                 cairo_rectangle(cr, 0, minui.height - clear_height - 5 * physical_scale,
                                 minui.width, clear_height + 10 * physical_scale);
                 cairo_fill(cr);
