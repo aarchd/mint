@@ -79,7 +79,13 @@ static void render_to_screen(cairo_surface_t *surface) {
 }
 
 int main(int argc, char *argv[]) {
-    if (argc < 2 || (strcmp(argv[1], "--charging") == 0 && argc < 3)) {
+    if (argc < 2 ||
+        (strcmp(argv[1], "--charging") == 0 && argc < 3) ||
+        (strcmp(argv[1], "--text") == 0 && argc < 3) ||
+        (strcmp(argv[1], "--splash") != 0 &&
+         strcmp(argv[1], "--charging") != 0 &&
+         strcmp(argv[1], "--text") != 0)) {
+
         fprintf(stderr, "Usage: %s --charging BAT_NAME | --splash | --text \"string\"\n", argv[0]);
         return EXIT_FAILURE;
     }
@@ -162,9 +168,6 @@ int main(int argc, char *argv[]) {
                 render_to_screen(surface);
             }
         }
-    } else {
-        fprintf(stderr, "Unknown option: %s\n", argv[1]);
-        goto cleanup;
     }
 
     pause();
