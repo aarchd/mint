@@ -9,14 +9,12 @@
  */
 
 #include <cairo.h>
-#include <cairo-ft.h>
 #include <minui.h>
 #include <stdio.h>
 #include <stdint.h>
 #include <string.h>
 #include <stdlib.h>
 #include <unistd.h>
-#include <sys/types.h>
 #include <sys/stat.h>
 #include <fcntl.h>
 #include <sys/socket.h>
@@ -108,8 +106,8 @@ int main(int argc, char *argv[]) {
         return EXIT_SUCCESS;
     }
 
-    gr_init(true);
-    gr_clear();
+    gr_init(false);
+    gr_color(0, 0, 0, 255);
 
     minui.width = gr_fb_width();
     minui.height = gr_fb_height();
