@@ -5,7 +5,7 @@ Mint is a [minui](https://github.com/droidian/android-minui)-based splash and in
 ## Features
 
  - Battery status graphic for offline charging
- - Splash (aacrhd logo)
+ - Splash
  - On-screen text graphics for displaying logs
 
 ## Deps
@@ -13,6 +13,7 @@ Mint is a [minui](https://github.com/droidian/android-minui)-based splash and in
  - `minui` 
  - `cairo`
  - `freetype2`
+ - `xxd`
  - `meson`
 
 ## Build
