@@ -20,6 +20,16 @@ srcs = [
   'src/poppins_light.c',
 ]
 
+logo_header = custom_target('logo_header',
+  input : files('logo.png'),
+  output : 'logo.h',
+  command : ['xxd', '-i', '@INPUT@'],
+  capture : true,
+  install : false
+)
+
+srcs += logo_header
+
 executable('mint', srcs,
   include_directories : include_directories('.'),
   dependencies : [cairo_dep, minui_dep, freetype_dep],

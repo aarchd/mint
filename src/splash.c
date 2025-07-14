@@ -4,7 +4,16 @@
  */
 
 #include <cairo.h>
+#include <string.h>
 #include "common.h"
+#include "logo.h"
+
+static cairo_status_t png_read(void *closure, unsigned char *data, unsigned int length) {
+    unsigned char **p = (unsigned char **)closure;
+    memcpy(data, *p, length);
+    *p += length;
+    return CAIRO_STATUS_SUCCESS;
+}
 
 void draw_splash(int width, int height, cairo_t *cr, double physical_scale) {
     int virtual_size = 200;
@@ -14,49 +23,33 @@ void draw_splash(int width, int height, cairo_t *cr, double physical_scale) {
     double final_scale = virtual_scale / physical_scale;
     double offset_x = (width - virtual_size * final_scale) / 2;
     double offset_y = (height - virtual_size * final_scale) / 2;
-    
+
     cairo_set_source_rgb(cr, .118, .118, .118);
     cairo_rectangle(cr, 0, 0, width, height);
     cairo_fill(cr);
 
+    unsigned char *data_ptr = ___logo_png;
+    cairo_surface_t *image = cairo_image_surface_create_from_png_stream(png_read, &data_ptr);
+
+
+    int img_width = cairo_image_surface_get_width(image);
+    int img_height = cairo_image_surface_get_height(image);
+
+    double img_scale_x = (double)virtual_size / img_width;
+    double img_scale_y = (double)virtual_size / img_height;
+    double img_scale = img_scale_x < img_scale_y ? img_scale_x : img_scale_y;
+
     cairo_save(cr);
-    
+
     cairo_translate(cr, offset_x, offset_y);
     cairo_scale(cr, final_scale, final_scale);
-    
-    cairo_move_to(cr, 100, 60);      
-    cairo_line_to(cr, 170, 110);     
-    
-    double c1x = 170 + 2.0/3.0*(100 - 170);  
-    double c1y = 110 + 2.0/3.0*(160 - 110);
-    double c2x = 30 + 2.0/3.0*(100 - 30);    
-    double c2y = 110 + 2.0/3.0*(160 - 110);
-    cairo_curve_to(cr, c1x, c1y, c2x, c2y, 30, 110);
-    cairo_close_path(cr);
-    cairo_set_source_rgb(cr, 0.898, 0.224, 0.208);
-    cairo_fill(cr);
-    
-    cairo_move_to(cr, 100, 50);
-    cairo_line_to(cr, 170, 100);
-    c1x = 170 + 2.0/3.0*(100 - 170);
-    c1y = 100 + 2.0/3.0*(150 - 100);
-    c2x = 30 + 2.0/3.0*(100 - 30);
-    c2y = 100 + 2.0/3.0*(150 - 100);
-    cairo_curve_to(cr, c1x, c1y, c2x, c2y, 30, 100);
-    cairo_close_path(cr);
-    cairo_set_source_rgb(cr, 0.937, 0.325, 0.314);
-    cairo_fill(cr);
-    
-    cairo_move_to(cr, 100, 40);
-    cairo_line_to(cr, 170, 90);
-    c1x = 170 + 2.0/3.0*(100 - 170);
-    c1y = 90 + 2.0/3.0*(140 - 90);
-    c2x = 30 + 2.0/3.0*(100 - 30);
-    c2y = 90 + 2.0/3.0*(140 - 90);
-    cairo_curve_to(cr, c1x, c1y, c2x, c2y, 30, 90);
-    cairo_close_path(cr);
-    cairo_set_source_rgb(cr, 0.898, 0.451, 0.451);
-    cairo_fill(cr);
-    
+    cairo_translate(cr, (virtual_size - img_width * img_scale) / 2.0, 
+                         (virtual_size - img_height * img_scale) / 2.0);
+    cairo_scale(cr, img_scale, img_scale);
+
+    cairo_set_source_surface(cr, image, 0, 0);
+    cairo_paint(cr);
+
     cairo_restore(cr);
+    cairo_surface_destroy(image);
 }
