@@ -92,7 +92,7 @@ void draw_bat(int width, int height, cairo_t *cr, char *batname, double physical
     FT_Library ft_library;
     FT_Face ft_face;
     FT_Init_FreeType(&ft_library);
-    FT_New_Memory_Face(ft_library, Poppins_Light_ttf, Poppins_Light_ttf_len, 0, &ft_face);
+    FT_New_Memory_Face(ft_library, font, font_len, 0, &ft_face);
 
     cairo_font_face_t *cairo_ft_face = cairo_ft_font_face_create_for_ft_face(ft_face, 0);
     cairo_set_font_face(cr, cairo_ft_face);

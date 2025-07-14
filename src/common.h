@@ -3,8 +3,8 @@
 
 #include <cairo.h>
 
-extern unsigned char Poppins_Light_ttf[];
-extern unsigned int Poppins_Light_ttf_len;
+extern unsigned char font[];
+extern unsigned int font_len;
 
 void draw_bat(int width, int height, cairo_t *cr, char *batname, double physical_scale);
 

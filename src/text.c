@@ -6,9 +6,6 @@
 #define _POSIX_C_SOURCE 200809L
 #include <cairo.h>
 #include <cairo-ft.h>
-#include <string.h>
-#include <stdlib.h>
-#include <stdio.h>
 #include <freetype2/ft2build.h>
 #include FT_FREETYPE_H
 #include "common.h"
@@ -22,7 +19,7 @@ void draw_text_line(cairo_t *cr, int width, int height, const char *text, double
     FT_Library ft_library;
     FT_Face ft_face;
     FT_Init_FreeType(&ft_library);
-    FT_New_Memory_Face(ft_library, Poppins_Light_ttf, Poppins_Light_ttf_len, 0, &ft_face);
+    FT_New_Memory_Face(ft_library, font, font_len, 0, &ft_face);
 
     cairo_font_face_t *cairo_ft_face = cairo_ft_font_face_create_for_ft_face(ft_face, 0);
     cairo_set_font_face(cr, cairo_ft_face);

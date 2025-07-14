@@ -17,21 +17,30 @@ srcs = [
   'src/battery.c',
   'src/splash.c',
   'src/text.c',
-  'src/poppins_light.c',
 ]
 
-logo_header = custom_target('logo_header',
-  input : files('logo.png'),
+logo = custom_target('logo',
+  input : files('assets/logo.png'),
   output : 'logo.h',
-  command : ['xxd', '-i', '-n', 'logo_png', '@INPUT@'],
+  command : ['xxd', '-i', '-n', 'logo', '@INPUT@'],
   capture : true,
   install : false
 )
 
-srcs += logo_header
+srcs += logo
+
+font = custom_target('font',
+  input : files('assets/font.ttf'),
+  output : 'font.c',
+  command : ['sh', '-c', 'echo \'#include "common.h"\' && xxd -i -n font @INPUT0@'],
+  capture : true,
+  install : false
+)
+
+srcs += font
 
 executable('mint', srcs,
-  include_directories : include_directories('.'),
+  include_directories : include_directories('src/.'),
   dependencies : [cairo_dep, minui_dep, freetype_dep],
   install : true
 )
