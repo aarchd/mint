@@ -32,7 +32,7 @@ struct minui {
 
 static struct minui minui;
 
-static void daemonize() {
+static void daemonize(void) {
     pid_t pid = fork();
     if (pid < 0) {
         perror("fork failed");
@@ -52,7 +52,7 @@ static void daemonize() {
     }
 }
 
-static int init_socket() {
+static int init_socket(void) {
     int sockfd = socket(AF_UNIX, SOCK_STREAM, 0);
     if (sockfd < 0) return -1;
 

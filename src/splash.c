@@ -31,7 +31,6 @@ void draw_splash(int width, int height, cairo_t *cr, double physical_scale) {
     unsigned char *data_ptr = logo;
     cairo_surface_t *image = cairo_image_surface_create_from_png_stream(png_read, &data_ptr);
 
-
     int img_width = cairo_image_surface_get_width(image);
     int img_height = cairo_image_surface_get_height(image);
 
