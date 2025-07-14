@@ -23,7 +23,7 @@ srcs = [
 logo_header = custom_target('logo_header',
   input : files('logo.png'),
   output : 'logo.h',
-  command : ['xxd', '-i', '@INPUT@'],
+  command : ['xxd', '-i', '-n', 'logo_png', '@INPUT@'],
   capture : true,
   install : false
 )
