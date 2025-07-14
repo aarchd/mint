@@ -32,7 +32,10 @@ static int get_battery_percentage(char *batname) {
     FILE *fp = fopen(path, "r");
     if (fp) {
         int percentage;
-        fscanf(fp, "%d", &percentage);
+        if (fscanf(fp, "%d", &percentage) != 1) {
+            fclose(fp);
+            return 0;
+        }
         fclose(fp);
         return percentage;
     } else {

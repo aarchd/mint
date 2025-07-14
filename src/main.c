@@ -107,7 +107,12 @@ int main(int argc, char *argv[]) {
             return EXIT_FAILURE;
         }
 
-        write(sock, argv[2], strlen(argv[2]));
+        if (write(sock, argv[2], strlen(argv[2])) < 0) {
+            perror("write failed");
+            close(sock);
+            return EXIT_FAILURE;
+        }
+
         close(sock);
         return EXIT_SUCCESS;
     }
