@@ -129,9 +129,14 @@ int main(int argc, char *argv[]) {
     minui.surface->width = minui.width;
     minui.surface->height = minui.height;
 
-    double dpi_x = (double)minui.width * 25.4 / gr_fb_mm_width();
-    double dpi_y = (double)minui.height * 25.4 / gr_fb_mm_height();
-    double physical_scale = ((dpi_x + dpi_y) / 2.0) / 60.0;
+    int mm_width = gr_fb_mm_width();
+    int mm_height = gr_fb_mm_height();
+    double physical_scale = 1.2;
+    if (!(mm_width <= 0) && !(mm_height <= 0)) {
+        double dpi_x = (double)minui.width * 25.4 / mm_width;
+        double dpi_y = (double)minui.height * 25.4 / mm_height; 
+        physical_scale = ((dpi_x + dpi_y) / 2.0) / 60.0;
+    }
 
     cairo_surface_t *surface = cairo_image_surface_create(CAIRO_FORMAT_RGB24, minui.width, minui.height);
     cairo_t *cr = cairo_create(surface);
