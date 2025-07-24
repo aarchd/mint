@@ -1,5 +1,5 @@
 project('mint', 'c',
-  version : '0.9',
+  version : '1.0',
   default_options : [
     'warning_level=3',
     'werror=true',
