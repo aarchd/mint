@@ -23,7 +23,7 @@ void draw_text_line(cairo_t *cr, int width, int height, const char *text, double
 
     cairo_font_face_t *cairo_ft_face = cairo_ft_font_face_create_for_ft_face(ft_face, 0);
     cairo_set_font_face(cr, cairo_ft_face);
-    double font_size = 12 * physical_scale;
+    double font_size = 14 * physical_scale;
     cairo_set_font_size(cr, font_size);
     cairo_set_source_rgb(cr, 1, 1, 1);
 
