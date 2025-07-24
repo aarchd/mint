@@ -73,7 +73,20 @@ static int init_socket(void) {
 static void render_to_screen(cairo_surface_t *surface) {
     cairo_surface_flush(surface);
     unsigned char *cairo_data = cairo_image_surface_get_data(surface);
-    memcpy(minui.surface->data, cairo_data, minui.width * minui.height * 4);
+    uint32_t *src = (uint32_t *)cairo_data;
+    uint32_t *dst = (uint32_t *)minui.surface->data;
+    size_t total_pixels = minui.width * minui.height;
+
+    for (size_t i = 0; i < total_pixels; ++i) {
+        uint32_t pixel = src[i];
+        uint8_t a = (pixel >> 24) & 0xFF;
+        uint8_t r = (pixel >> 16) & 0xFF;
+        uint8_t g = (pixel >> 8) & 0xFF;
+        uint8_t b = pixel & 0xFF;
+        // Swap R and B
+        dst[i] = (a << 24) | (b << 16) | (g << 8) | r;
+    }
+
     gr_blit(minui.surface, 0, 0, minui.width, minui.height, 0, 0);
     gr_flip();
 }
