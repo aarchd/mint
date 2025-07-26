@@ -59,8 +59,8 @@ void draw_bat(int width, int height, cairo_t *cr, char *batname, double physical
     cairo_translate(cr, offset_x, offset_y);
     cairo_scale(cr, final_scale, final_scale);
 
-    float batbox_width = 160;
-    float batbox_height = 36;
+    float batbox_width = 130;
+    float batbox_height = 60;
     float corner_radius = batbox_height * 0.2;
     float bat_x = (virtual_size - batbox_width)/2;
     float bat_y = (virtual_size - batbox_height)/2;
